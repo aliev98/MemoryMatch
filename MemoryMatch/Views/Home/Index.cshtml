@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Memory Game!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #playerForm {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        input[type="text"], select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Memory Game</h1>
+    <form method="post" id="playerForm">
+        <br />
+        <label for="theme">Choose Theme</label>
+        <select id="theme" name="theme">
+            @foreach (var theme in ViewBag.themes)
+            {
+                <option value="@theme">@theme</option>
+            }
+        </select>
+        <br />
+        <button type="submit">Start Game</button>
+    </form>
+
+    <script>
+        document.getElementById('playerForm').addEventListener('submit', function (event) {
+            var theme = document.getElementById('theme').value;
+
+            // Set items in localStorage
+            localStorage.setItem('Theme', theme);
+        });
+    </script>
+</body>
+</html>
